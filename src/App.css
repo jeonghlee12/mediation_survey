@@ -34,6 +34,18 @@ main {
   font-weight: bold;
 }
 
+.Question .Reminder {
+    color: red;
+    display: none;
+}
+
+/* Classes for all different types of questions*/
+.SkillReminder, .BeliefReminder, .DesireReminder, .AwarenessReminder, .willReminder, .WrongfulnessReminder,
+.HarmfulnessReminder, .IntentionalityReminder, .ForeseeabilityReminder, .autonomyReminder, .LiabilityReminder,
+.BlameReminder, .responsibilityReminder {
+    display: inline !important;
+}
+
 .Spotlight {
   text-decoration: underline;
   font-weight: bold;

@@ -1,62 +1,90 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import {fullScenarios, scenarioQuestions, options} from './Data.js';
+import {fullScenarios, scenarioQuestions, options, responsibilityOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
+
+const defaultQuestionStatus = {
+    "Skill": false,
+    "Belief": false,
+    "Desire": false,
+    "Awareness": false,
+    "Free will": false,
+    "Wrongfulness": false,
+    "Harmfulness": false,
+    "Intentionality": false,
+    "Foreseeability": false,
+    "Perceived autonomy": false,
+    "Liability": false,
+    "Blame": false,
+    "Causal responsibility": false
+};
 
 class QuestionsScenario extends React.Component {
     constructor(props) {
         super(props)
+        const shuffle = require('shuffle-array');
         this.state = {
             scenario: this.props.scenario[0],
             scenarioText: fullScenarios[this.props.agent][this.props.scenario[0]],
-            stages: ["scenario", "agent", "action"],
+            questions: {
+                        "agent": shuffle(agentQTypes),
+                        "action": shuffle(actionQTypes),
+                        "responsibility": shuffle(responsibilityQTypes)
+                    },
+            stages: ["scenario"].concat(shuffle(["agent", "action"])).concat(["responsibility"]),
             curr_stage_id: 0,
             curr_scenario_id: 0,
-            init_time: null,
+            missing: defaultQuestionStatus,
             responses: {},
         }
+        this.saveResponseToState = this.saveResponseToState.bind(this);
         this.skipIntro = this.skipIntro.bind(this);
         this.skipStage = this.skipStage.bind(this);
         this.skipScenario = this.skipScenario.bind(this);
-        this.saveResponseToState = this.saveResponseToState.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({init_time: new Date()});
+    saveResponseToState(id, response) {
+        var tmpResponses = this.state.responses;
+        tmpResponses[id] = response;
+        this.setState({responses: tmpResponses});
     }
 
     skipIntro() {
-        // const delta_time = (new Date() - this.state.init_time) / 1000;
-        // console.log(delta_time);
-
-        const delta_time = 6;
-        if (delta_time < 5) {
-            alert("Please take some more time to carefully read the provided scenario.");
-        } else {
-            this.setState({curr_stage_id: this.state.curr_stage_id + 1});
-            this.setState({init_time: new Date()});
-            this.props.saveTime("Scenario N." + this.state.curr_scenario_id + "_" + this.state.curr_stage_id + "_end");
-        }
+        this.setState({curr_stage_id: this.state.curr_stage_id + 1});
+        this.props.saveTime("Scenario N. " + this.state.curr_scenario_id + "_intro_end");
     }
 
-    skipStage() {
-        console.log(Object.keys(this.state.responses).length);
-        if (Object.keys(this.state.responses).length === 10) {
-            this.props.saveDictToState({"scenarioId": this.state.scenario});
-            this.props.saveDictToState(this.state.responses);
-            this.skipScenario();
-        } else {
-            if ((Object.keys(this.state.responses).length % 5 === 0) && !(Object.keys(this.state.responses).length === 10)) {
-                const delta_time = (new Date() - this.state.init_time) / 1000;
-                console.log(delta_time);
-
-                if (delta_time > 5) {
-                    this.setState({curr_stage_id: this.state.curr_stage_id + 1});
-                    this.props.saveTime("Scenario N." + this.props.stage + "_" + this.state.curr_stage_id + "_end");
-                    this.setState({init_time: new Date()});
-                } else {
-                    alert("Please take some more time to carefully read the provided scenario and answer the questions.");
-                }
+    skipStage()
+    {
+        if (this.state.curr_stage_id == 3) {
+            if (Object.keys(this.state.responses).length === 13) {
+                this.props.saveDictToState({"scenarioId": this.state.scenario});
+                this.props.saveDictToState(this.state.responses);
+                this.setState({curr_stage_id: 0});
+                this.skipScenario();
             } else {
+                let questionlist = {...defaultQuestionStatus};
+                var x;
+                for (x of this.state.questions[this.state.stages[this.state.curr_stage_id]]) {
+                    if (!(x in this.state.responses)) {
+                        questionlist[x] = true;
+                    }
+                }
+                this.setState({missing: questionlist});
+                alert("You must answer all questions.");
+            }
+        } else {
+            if ((Object.keys(this.state.responses).length === 5 * this.state.curr_stage_id) && (Object.keys(this.state.responses).length > 0)) {
+                this.setState({curr_stage_id: this.state.curr_stage_id + 1});
+                this.props.saveTime("Scenario N. " + this.state.curr_scenario_id + "_" + this.state.curr_stage_id + "_end");
+            } else {
+                let questionlist = {...defaultQuestionStatus};
+                var x;
+                for (x of this.state.questions[this.state.stages[this.state.curr_stage_id]]) {
+                    if (!(x in this.state.responses)) {
+                        questionlist[x] = true;
+                    }
+                }
+                this.setState({missing: questionlist});
                 alert("You must answer all questions.");
             }
         }
@@ -66,25 +94,16 @@ class QuestionsScenario extends React.Component {
         if (this.state.curr_scenario_id === 3) {
             this.props.skipStage();
         } else {
-            console.log("here");
-            console.log(this.state.curr_scenario_id);
-            this.setState({curr_scenario_id: this.state.curr_scenario_id + 1});
-
-            console.log(this.state.curr_scenario_id);
-            this.setState({scenario: this.props.scenario[this.state.curr_scenario_id + 1]});
-            this.setState({scenarioText: fullScenarios[this.props.agent][this.state.scenario]});
+            let scenario_id = this.state.curr_scenario_id + 1;
+            let new_scenario = this.props.scenario[scenario_id];
+            let new_scenarioText = fullScenarios[this.props.agent][new_scenario]
+            this.setState({curr_scenario_id: scenario_id});
+            this.setState({scenario: new_scenario});
+            this.setState({scenarioText: new_scenarioText});
             this.setState({responses: {}});
-            this.setState({curr_stage_id: 0});
-            console.log(this.state.curr_scenario_id);
+            this.setState({missing: defaultQuestionStatus});
             this.props.saveTime("Scenario N." + this.state.curr_scenario_id + "_end");
-            this.setState({init_time: new Date()});
         }
-    }
-
-    saveResponseToState(id, response) {
-        var tmpResponses = this.state.responses;
-        tmpResponses[id] = response;
-        this.setState({responses: tmpResponses});
     }
 
     render() {
@@ -95,7 +114,7 @@ class QuestionsScenario extends React.Component {
             </main>;
 
         let content;
-        let questionsOrder = this.props.questions[stage];
+        let questionsOrder = this.state.questions[stage];
         let questions;
 
         if (stage === "scenario") {
@@ -110,23 +129,59 @@ class QuestionsScenario extends React.Component {
                         <Button variant="secondary" onClick={this.skipIntro}>Next</Button>
                     </div>
                 </div>
-        } else {
+        } else if (stage === "responsibility") {
             questions = scenarioQuestions[stage][this.props.agent][this.state.scenario];
             content =
                 <div className="Scenario">
                     <div className="Subtitle Spotlight">
-                        Answer the following questions about the scenario below
+                        Answer the following questions about the scenario below.
                     </div>
                     {introduction_text}
                     <hr/>
                     <div className="Spotlight Question">
-                        Answer the following questions regarding the <span className="RedSpotlight Subtitle">agent</span>
+                        Answer the following questions regarding responsibility.
                     </div>
                     <div style={{"margin": "5px"}}>
                         {questionsOrder.map((qType, qIdx) => (
                             <div key={this.state.scenario + stage + qIdx} className="QuestionMargin">
                                 <div className="Question" key={qIdx}>
-                                    {questions[qType]}
+                                    {qType}: {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
+                                </div>
+                                <div>
+                                    {responsibilityOptions.map((option, opIdx) => (
+                                        <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
+                                        <input key={opIdx} type="radio" name={this.state.scenario +
+                                            qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
+                                        <label style={{"display": "block"}}>
+                                            {option}
+                                        </label>
+                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    <div>
+                        <Button variant="secondary" onClick={this.skipStage}>Next</Button>
+                    </div>
+                </div>
+        } else {
+            questions = scenarioQuestions[stage][this.props.agent][this.state.scenario];
+            content =
+                <div className="Scenario">
+                    <div className="Subtitle Spotlight">
+                        Answer the following questions about the scenario below.
+                    </div>
+                    {introduction_text}
+                    <hr/>
+                    <div className="Spotlight Question">
+                        Answer the following questions regarding the <span className="RedSpotlight Subtitle">{stage}</span>.
+                    </div>
+                    <div style={{"margin": "5px"}}>
+                        {questionsOrder.map((qType, qIdx) => (
+                            <div key={this.state.scenario + stage + qIdx} className="QuestionMargin">
+                                <div className="Question" key={qIdx}>
+                                    {qType}: {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
                                 </div>
                                 <div>
                                     {options.map((option, opIdx) => (

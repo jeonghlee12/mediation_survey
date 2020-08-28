@@ -10,7 +10,11 @@ export const agentQTypes = ["Skill", "Belief", "Desire", "Awareness", "Free will
 
 export const actionQTypes = ["Wrongfulness", "Harmfulness", "Intentionality", "Foreseeability", "Perceived autonomy"];
 
+export const responsibilityQTypes = ["Liability", "Blame", "Causal responsibility"];
+
 export const options = ["Very strongly disagree", "Strongly disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Strongly agree", "Very strongly agree"];
+
+export const responsibilityOptions = ["None at all responsible", "Somewhat responsible", "Mostly responsible", "Completely responsible"];
 
 export const introParagraph = {
     "robotAI": "In this survey, we will present to you some scenarios where a certain robot or AI has caused some damage. We would like to know what you think about it and the consequences of its actions. We are not looking for the correct answers, but your opinion on the matter. Please, answer all questions presented to you taking into consideration the robot/AI itself.",
@@ -176,6 +180,60 @@ export const scenarioQuestions = {
                 "Intentionality": "The supervisor's action was intentional.",
                 "Foreseeability": "The consequences of the supervisor's actions were foreseeable.",
                 "Perceived autonomy": "The supervisor's action was independent of any external entity."
+            }
+        }
+    },
+
+    "responsibility": {
+        "robotAI": {
+            "Car": {
+                "Liability": "How much should the car be punished for hurting the passengers?",
+                "Blame": "How much should the car be blamed for hurting the passengers?",
+                "Causal responsibility": "How causally responsible is the car for hurting the passengers?"
+            },
+
+            "War": {
+                "Liability": "How much should the submarine be punished for killing the crew members?",
+                "Blame": "How much should the submarine be blamed for killing the crew members?",
+                "Causal responsibility": "How causally responsible is the submarine for killing the crew members?"
+            },
+
+            "Medicine": {
+                "Liability": "How much should the AI doctor be punished for killing the patient?",
+                "Blame": "How much should the AI doctor be blamed for killing the patient",
+                "Causal responsibility": "How causally responsible is the AI doctor for killing the patient?"
+            },
+
+            "Bias": {
+                "Liability": "How much should the program be punished for disadvantaging the candidates?",
+                "Blame": "How much should the program be blamed for disadvantaging the candidates",
+                "Causal responsibility": "How causally responsible is the program for disadvantaging the candidates?"
+            }
+        },
+
+        "human": {
+            "Car": {
+                "Liability": "How much should the driver be punished for hurting the passengers?",
+                "Blame": "How much should the driver be blamed for hurting the passengers?",
+                "Causal responsibility": "How causally responsible is the driver for hurting the passengers?"
+            },
+
+            "War": {
+                "Liability": "How much should the captain be punished for killing the crew members?",
+                "Blame": "How much should the captain be blamed for killing the crew members?",
+                "Causal responsibility": "How causally responsible is the captain for killing the crew members?"
+            },
+
+            "Medicine": {
+                "Liability": "How much should the doctor be punished for killing the patient?",
+                "Blame": "How much should the doctor be blamed for killing the patient",
+                "Causal responsibility": "How causally responsible is the doctor for killing the patient?"
+            },
+
+            "Bias": {
+                "Liability": "How much should the supervisor be punished for disadvantaging the candidates?",
+                "Blame": "How much should the supervisor be blamed for disadvantaging the candidates",
+                "Causal responsibility": "How causally responsible is the supervisor for disadvantaging the candidates?"
             }
         }
     }

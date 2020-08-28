@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { treatGroups, scenarios, getRandomItem } from './Data.js'
 import Intro from './Intro.js';
-import Scenario from './Scenario.js'
+import Scenarios from './Scenarios.js'
 // import Demographics from './Demographics.js';
 import Button from 'react-bootstrap/Button';
 import publicIP from 'react-native-public-ip';
@@ -111,7 +111,7 @@ class App extends React.Component {
             if (stage === "intro") {
                 content = <Intro skipStage={this.skipStage} Preview={this.state.assignmentId === "ASSIGNMENT_ID_NOT_AVAILABLE"}/>;
             } else if (stage === "scenario") {
-                content = <Scenario agent={this.state.agent} scenarioOrder={this.state.scenarioOrder} skipStage={this.skipStage} saveDictToState={this.saveDictToState} saveTime={this.saveTime}/>;
+                content = <Scenarios agent={this.state.agent} scenarioOrder={this.state.scenarioOrder} skipStage={this.skipStage} saveDictToState={this.saveDictToState} saveTime={this.saveTime}/>;
             // } else if(stage === "demographics") {
             //     content = <Demographics skipStage={this.skipStage} saveDictToState={this.saveDictToState}/>
             } else if (stage === "end") {

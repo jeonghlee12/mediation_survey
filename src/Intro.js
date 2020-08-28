@@ -13,7 +13,8 @@ class Intro extends React.Component {
                     <div>
                         <hr/>
                         <div className="Subtitle">Record of Consent</div>
-                        The purpose of this research is to understand the population’s perception on the insertion of Artificial Intelligence (AI) and robots in our society. This experiment is composed by an online survey that takes less than 10 minutes to complete. Your responses to this survey will be confidential and they will be used for research purposes only. Results will be published only as aggregate statistics, allowing no inference on any particular individual. Your participation is voluntary and you may withdraw from the study at any time without any penalty. To withdraw, simply close your browser.
+                        This research aims to understand how people perceive the consequences of the actions of artificial intelligence systems and their human counterparts. This experiment is composed of an online survey that takes less than 20 minutes to complete. Your responses will be used for research purposes only. Your responses may be shared with other researchers; all information, however, will be anonymized and allow no inference on any particular individual.
+                        Results will be published only as aggregate statistics, allowing no inference on any particular individual. Your participation is voluntary, and you may withdraw from the study at any time without any penalty. To withdraw, simply close your browser.
                         <div className="Spotlight RedSpotlight Subtitle">
                             Participants who complete the survey will receive financial compensation as an incentive. <br/>
                             <span style={(this.props.Preview)? {"display": "none"} : {}}>
