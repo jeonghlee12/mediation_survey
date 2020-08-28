@@ -4,7 +4,7 @@ import './App.css';
 import { treatGroups, scenarios, getRandomItem } from './Data.js'
 import Intro from './Intro.js';
 import Scenarios from './Scenarios.js'
-// import Demographics from './Demographics.js';
+import Demographics from './Demographics.js';
 import Button from 'react-bootstrap/Button';
 import publicIP from 'react-native-public-ip';
 import firebase from 'firebase';
@@ -112,13 +112,13 @@ class App extends React.Component {
                 content = <Intro skipStage={this.skipStage} Preview={this.state.assignmentId === "ASSIGNMENT_ID_NOT_AVAILABLE"}/>;
             } else if (stage === "scenario") {
                 content = <Scenarios agent={this.state.agent} scenarioOrder={this.state.scenarioOrder} skipStage={this.skipStage} saveDictToState={this.saveDictToState} saveTime={this.saveTime}/>;
-            // } else if(stage === "demographics") {
-            //     content = <Demographics skipStage={this.skipStage} saveDictToState={this.saveDictToState}/>
+            } else if(stage === "demographics") {
+                content = <Demographics skipStage={this.skipStage} saveDictToState={this.saveDictToState}/>
             } else if (stage === "end") {
-                content = <div>
+                content = <div className="VerticalCenter">
                             <div className="Title">Thank you for participating in our survey!</div>
                             <div className="Subtitle">
-                                Please be informed that all people and scenarios presented in this survey were adapted from real cases. <br/>
+                            Please note that all the scenarios presented to you were adapted for research purposes. None of the scenarios reflect real cases, legal decisions, or legal judgments.<br/>
                                 If you have any questions, feel free to contact us at ibs.dscig@gmail.com .
                                 <hr/>
                             </div>

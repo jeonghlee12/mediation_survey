@@ -55,8 +55,8 @@ class QuestionsScenario extends React.Component {
 
     skipStage()
     {
-        if (this.state.curr_stage_id == 3) {
-            if (Object.keys(this.state.responses).length === 13) {
+        if (true) { //(this.state.curr_stage_id == 3) {
+            if (true) {//(Object.keys(this.state.responses).length === 13) {
                 this.props.saveDictToState({"scenarioId": this.state.scenario});
                 this.props.saveDictToState(this.state.responses);
                 this.setState({curr_stage_id: 0});
@@ -73,7 +73,7 @@ class QuestionsScenario extends React.Component {
                 alert("You must answer all questions.");
             }
         } else {
-            if ((Object.keys(this.state.responses).length === 5 * this.state.curr_stage_id) && (Object.keys(this.state.responses).length > 0)) {
+            if (true) {//((Object.keys(this.state.responses).length === 5 * this.state.curr_stage_id) && (Object.keys(this.state.responses).length > 0)) {
                 this.setState({curr_stage_id: this.state.curr_stage_id + 1});
                 this.props.saveTime("Scenario N. " + this.state.curr_scenario_id + "_" + this.state.curr_stage_id + "_end");
             } else {

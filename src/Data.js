@@ -12,7 +12,7 @@ export const actionQTypes = ["Wrongfulness", "Harmfulness", "Intentionality", "F
 
 export const responsibilityQTypes = ["Liability", "Blame", "Causal responsibility"];
 
-export const options = ["Very strongly disagree", "Strongly disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Strongly agree", "Very strongly agree"];
+export const options = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
 
 export const responsibilityOptions = ["None at all responsible", "Somewhat responsible", "Mostly responsible", "Completely responsible"];
 
@@ -238,3 +238,22 @@ export const scenarioQuestions = {
         }
     }
 }
+
+export const demographics = [
+    {id: "personalData", questions: [
+        {id: "sex", order: "horizontal", text: "What is your gender?", options: ["Male", "Female", "Non-binary", "Other (please specify)"]},
+        {id: "age", order: "vertical", text: "How old are you?", options: ["Less than 18 years old", "18-24 years old", "25-34 years old", "35-44 years old", "45-54 years old", "55-64 years old", "65 years old or older"]},
+        {id: "education", order: "vertical", text: "What is your highest degree or level of school you have completed?", options: ["High school or lower", "Associate degree", "Bachelor's degree", "Graduate degree"]}
+    ]},
+    {id: "experience", questions: [
+        {id: "csKnowledge", order: "vertical", text: "What is your knowledge of computer science?", options: ["I have a computer science or related degree", "I have taken at least one college-level course in computer science or related areas", "I have programming experience", "I don’t have any of the educational or work experiences described above"]}
+    ]},
+    {id: "attitude", questions: [
+        {id: "controlQ1", order: "horizontal", text: "I would feel uneasy if I was given a job where I had to use an artificial intelligence programs", options: ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"]},
+        {id: "controlQ2", order: "horizontal", text: "The word 'artificial intelligence' means nothing to me", options: ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"]},
+        {id: "controlQ3", order: "horizontal", text: "I would feel nervous operating an artificial intelligence program in front of other people", options: ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"]},
+        {id: "controlQ4", order: "horizontal", text: "I would hate the idea that artificial intelligence programs were making judgements about things", options: ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"]},
+        {id: "controlQ5", order: "horizontal", text: "I would feel very nervous just standing in front of an artificial intelligence programs", options: ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"]},
+        {id: "controlQ6", order: "horizontal", text: "I would feel paranoid talking with an artificial intelligence program", options: ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"]},
+    ]}
+];
