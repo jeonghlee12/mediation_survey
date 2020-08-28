@@ -145,7 +145,7 @@ class QuestionsScenario extends React.Component {
                         {questionsOrder.map((qType, qIdx) => (
                             <div key={this.state.scenario + stage + qIdx} className="QuestionMargin">
                                 <div className="Question" key={qIdx}>
-                                    {qType}: {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
+                                    {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
                                 </div>
                                 <div>
                                     {responsibilityOptions.map((option, opIdx) => (
@@ -181,7 +181,7 @@ class QuestionsScenario extends React.Component {
                         {questionsOrder.map((qType, qIdx) => (
                             <div key={this.state.scenario + stage + qIdx} className="QuestionMargin">
                                 <div className="Question" key={qIdx}>
-                                    {qType}: {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
+                                    {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
                                 </div>
                                 <div>
                                     {options.map((option, opIdx) => (
