@@ -18,7 +18,7 @@ main {
 }
 
 .VerticalCenter {
-    padding: 10% 15%;
+    margin: 0% 15%;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);

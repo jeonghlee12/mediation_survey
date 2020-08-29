@@ -14,7 +14,6 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         const queryString = require('query-string');
-        const shuffle = require('shuffle-array');
         const randomTreat = getRandomItem(treatGroups);
         const params = queryString.parse(this.props.location.search);
         this.state = {
@@ -25,7 +24,6 @@ class App extends React.Component {
             // workerId: params.workerId,
             prolificId: params.PROLIFIC_PID,
             agent: randomTreat.agent,
-            scenarioOrder: shuffle(scenarios),
             stages: ["intro", "scenario", "demographics", "end"],
             curr_stage_id: 0,
             responses: {}
