@@ -24,7 +24,7 @@ class App extends React.Component {
             // hitId: params.hitId,
             // turkSubmitTo: params.turkSubmitTo,
             // workerId: params.workerId,
-            prolificId: params.PROLIFIC_PID,
+            // prolificId: params.PROLIFIC_PID,
             scenario: shuffle(scenarios),
             agent: randomTreat.agent,
             stages: ["intro", "POQ", "scenario", "demographics", "end"],
@@ -45,13 +45,12 @@ class App extends React.Component {
         var allResponses = this.state.responses;
         allResponses.scenario = this.state.scenario;
         allResponses.agent = this.state.agent;
-        allResponses.prolificId = this.state.prolificId;
+        //allResponses.prolificId = this.state.prolificId;
         const times = this.state.time;
         for (var keyTime in times) {
             allResponses[keyTime] = times[keyTime];
         }
         firebase.database().ref("/" + this.state.prolificId).set(allResponses).catch(error => console.log(error)).then(() => this.redirectToSurveyCompletion());
-        // this.redirectToSurveyCompletion();
     }
 
     componentDidMount() {
@@ -98,7 +97,7 @@ class App extends React.Component {
     }
 
     redirectToSurveyCompletion() {
-        let path = //'https://app.prolific.co/submissions/complete?cc=5D1B9B70';
+        let path = 'www.google.com';//'https://app.prolific.co/submissions/complete?cc=5D1B9B70';
         window.open(path, "_self");
     }
 

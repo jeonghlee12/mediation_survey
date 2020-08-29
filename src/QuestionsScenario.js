@@ -51,17 +51,17 @@ class QuestionsScenario extends React.Component {
 
     skipIntro() {
         this.setState({curr_stage_id: this.state.curr_stage_id + 1});
-        this.props.saveTime("Scenario N. " + this.state.curr_scenario_id + "_intro_end");
+        this.props.saveTime("Scenario" + this.state.curr_scenario_id + "_intro_end");
     }
 
     skipStage()
     {
         if (this.state.curr_stage_id === 3) {
             if (Object.keys(this.state.responses).length === 13) {
-                this.props.saveDictToState({"scenarioId": this.state.scenario});
-                this.props.saveDictToState(this.state.responses);
+                let scenario = this.state.scenario
+                this.props.saveDictToState({[scenario]: this.state.responses});
                 this.setState({curr_stage_id: 0});
-                this.props.saveTime("Scenario N." + this.state.curr_scenario_id + "_end");
+                this.props.saveTime("Scenario" + this.state.curr_scenario_id + "_end");
                 if (this.state.curr_scenario_id === 1) {
                     this.setState({responses: {}});
                     this.setState({curr_stage_id: this.state.curr_stage_id + 1});
@@ -81,15 +81,14 @@ class QuestionsScenario extends React.Component {
                 alert("You must answer all questions.");
             }
         } else if (this.state.curr_stage_id === 4) {
-            this.props.saveDictToState({"scenarioId": "Attention Check"});
-            this.props.saveDictToState(this.state.responses);
+            this.props.saveDictToState({"Attention Check": this.state.responses});
             this.setState({curr_stage_id: 0});
-            this.props.saveTime("Scenario_Attention Check_end");
+            this.props.saveTime("Scenario_AttentionCheck_end");
             this.skipScenario();
         } else {
             if ((Object.keys(this.state.responses).length === 5 * this.state.curr_stage_id) && (Object.keys(this.state.responses).length > 0)) {
                 this.setState({curr_stage_id: this.state.curr_stage_id + 1});
-                this.props.saveTime("Scenario N. " + this.state.curr_scenario_id + "_" + this.state.curr_stage_id + "_end");
+                this.props.saveTime("Scenario" + this.state.curr_scenario_id + "_" + this.state.curr_stage_id + "_end");
             } else {
                 let questionlist = {...defaultQuestionStatus};
                 var x;

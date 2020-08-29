@@ -13,10 +13,6 @@ class Scenarios extends React.Component {
         this.skipIntro = this.skipIntro.bind(this);
     }
 
-    componentDidMount() {
-        this.setState({init_time: new Date()});
-    }
-
     skipIntro() {
         this.setState({curr_stage_id: this.state.curr_stage_id + 1});
         this.props.saveTime("Scenarios_intro_end");
