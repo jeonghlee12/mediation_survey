@@ -85,9 +85,6 @@ class App extends React.Component {
         for (var keyTime in times) {
             allResponses[keyTime] = times[keyTime];
         }
-        // this.state.time.forEach((time, timeIdx) => {
-        //     allResponses["time" + timeIdx] = time;
-        // });
         var i = 0;
         for (var key in allResponses) {
             content = [...content, <input type="hidden" name={key} value={allResponses[key]} key={key + i}/>];
