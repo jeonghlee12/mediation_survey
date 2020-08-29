@@ -12,9 +12,32 @@ export const actionQTypes = ["Wrongfulness", "Harmfulness", "Intentionality", "F
 
 export const responsibilityQTypes = ["Liability", "Blame", "Causal responsibility"];
 
-export const options = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
+export const fivePtOptions = ["Strongly disagree", "Disagree", "Neither agree nor disagree", "Agree", "Strongly agree"];
+
+export const sevenPtOptions = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
 
 export const responsibilityOptions = ["None at all responsible", "Somewhat responsible", "Mostly responsible", "Completely responsible"];
+
+export const POQQuestions = {
+    "retributive": [
+        {id: "R1", question: "Punishment is necessary because it restores the balance of justice."},
+        {id: "R2", question: "It is more important to punish a guilty person because he deserves it than it is to punish him to benefit society."},
+        {id: "R3", question: "The goal of punishment should be to give the guilty person what he deserves."},
+        {id: "R4", question: "Criminals are bad people and deserve punishment."},
+        {id: "R5", question: "Even if society would not benefit at all from punishing a guilty person, he should still be punished because he deserves it."},
+        {id: "R6", question: "Criminals are in prison because they deserve to be there."},
+        {id: "R7", question: "Criminals deserve to be publicly identified and shamed."},
+        {id: "R8", question: "If a person hits someone with the intent to slightly harm him but causes significant harm, he should be punished for the significant harm that he caused."}
+    ],
+
+    "utilitarian": [
+        {id: "U1", question: "An overly harsh punishment may be necessary to prevent others from committing the same crime."},
+        {id: "U2", question: "If a crime has a low detection rate (i.e., it is difficult to catch criminals who commit this particular crime), we should punish those who are caught harshly to prevent others from thinking they can get away with it."},
+        {id: "U3", question: "Crimes that receive a great deal of publicity should be punished severely, even if the crime was not severe so that society knows there is a strong response."},
+        {id: "U4", question: "If someone commits a crime, that person is dangerous and must be removed from the community to protect other people."},
+        {id: "U5", question: "Criminals are in prison to keep the community safe."}
+    ]
+}
 
 export const introParagraph = {
     "robotAI": "In this survey, we will present to you some scenarios where a certain robot or AI has caused some damage. We would like to know what you think about it and the consequences of its actions. We are not looking for the correct answers, but your opinion on the matter. Please, answer all questions presented to you taking into consideration the robot/AI itself.",

@@ -36,7 +36,7 @@ class Scenarios extends React.Component {
                         </div>
                     </div>
         } else {
-            content = <QuestionsScenario saveTime={this.props.saveTime} agent={this.props.agent} skipStage={this.props.skipStage} saveDictToState={this.props.saveDictToState}/>
+            content = <QuestionsScenario saveTime={this.props.saveTime} agent={this.props.agent} scenario={this.props.scenario} skipStage={this.props.skipStage} saveDictToState={this.props.saveDictToState}/>
         }
         return (
             <div>

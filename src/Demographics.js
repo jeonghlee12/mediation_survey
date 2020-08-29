@@ -27,7 +27,6 @@ class Demographics extends React.Component {
             questionGroups: shuffleQGroups,
             missing: defaultQuestionStatus,
             responses: {},
-            missingCount: 0
         }
         this.saveResponseToState = this.saveResponseToState.bind(this);
         this.finalizeStage = this.finalizeStage.bind(this);
@@ -60,8 +59,8 @@ class Demographics extends React.Component {
 
     render() {
         let content =
-            <div className="Demographics">
-                <div className="Title">Let us know a little bit more about yourself</div>
+            <div className="ControlQuestions">
+                <div className="Title">Let us know a little bit more about yourself.</div>
                 <main>
                 All the information obtained below will be used solely for research purposes.
                 All data will be confidential and will not be made available to anyone outside the research team.

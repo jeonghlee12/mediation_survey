@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { treatGroups, scenarios, getRandomItem } from './Data.js'
 import Intro from './Intro.js';
+import POQ from './POQ.js';
 import Scenarios from './Scenarios.js'
 import Demographics from './Demographics.js';
 import Button from 'react-bootstrap/Button';
@@ -13,6 +14,7 @@ import config from './config';
 class App extends React.Component {
     constructor(props) {
         super(props)
+        const shuffle = require('shuffle-array');
         const queryString = require('query-string');
         const randomTreat = getRandomItem(treatGroups);
         const params = queryString.parse(this.props.location.search);
@@ -23,8 +25,9 @@ class App extends React.Component {
             // turkSubmitTo: params.turkSubmitTo,
             // workerId: params.workerId,
             prolificId: params.PROLIFIC_PID,
+            scenario: shuffle(scenarios),
             agent: randomTreat.agent,
-            stages: ["intro", "scenario", "demographics", "end"],
+            stages: ["intro", "POQ", "scenario", "demographics", "end"],
             curr_stage_id: 0,
             responses: {}
         }
@@ -108,8 +111,10 @@ class App extends React.Component {
         } else {
             if (stage === "intro") {
                 content = <Intro skipStage={this.skipStage} Preview={this.state.assignmentId === "ASSIGNMENT_ID_NOT_AVAILABLE"}/>;
+            } else if (stage === "POQ") {
+                content = <POQ skipStage={this.skipStage} saveDictToState={this.saveDictToState}/>;
             } else if (stage === "scenario") {
-                content = <Scenarios agent={this.state.agent} scenarioOrder={this.state.scenarioOrder} skipStage={this.skipStage} saveDictToState={this.saveDictToState} saveTime={this.saveTime}/>;
+                content = <Scenarios agent={this.state.agent} scenario={this.state.scenario} skipStage={this.skipStage} saveDictToState={this.saveDictToState} saveTime={this.saveTime}/>;
             } else if(stage === "demographics") {
                 content = <Demographics skipStage={this.skipStage} saveDictToState={this.saveDictToState}/>
             } else if (stage === "end") {

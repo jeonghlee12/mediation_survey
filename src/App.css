@@ -40,9 +40,11 @@ main {
 }
 
 /* Classes for all different types of questions*/
-.SkillReminder, .BeliefReminder, .DesireReminder, .AwarenessReminder, .willReminder, .WrongfulnessReminder,
-.HarmfulnessReminder, .IntentionalityReminder, .ForeseeabilityReminder, .autonomyReminder, .LiabilityReminder,
-.BlameReminder, .responsibilityReminder,  .sexReminder, .ageReminder, .educationReminder, .csKnowledgeReminder,
+.R1Reminder, .R2Reminder, .R3Reminder, .R4Reminder, .R5Reminder, .R6Reminder, .R7Reminder, .R8Reminder,
+.U1Reminder, .U2Reminder, .U3Reminder, .U4Reminder, .U5Reminder, .SkillReminder, .BeliefReminder,
+.DesireReminder, .AwarenessReminder, .willReminder, .WrongfulnessReminder, .HarmfulnessReminder,
+.IntentionalityReminder, .ForeseeabilityReminder, .autonomyReminder, .LiabilityReminder, .BlameReminder,
+.responsibilityReminder,  .sexReminder, .ageReminder, .educationReminder, .csKnowledgeReminder,
 .controlQ1Reminder, .controlQ2Reminder, .controlQ3Reminder, .controlQ4Reminder, .controlQ5Reminder,
 .controlQ6Reminder {
     display: inline !important;
@@ -61,6 +63,6 @@ main {
   margin: 15px;
 }
 
-.Demographics {
+.ControlQuestions {
     margin: 3% 15% 5%;
 }

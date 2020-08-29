@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import {scenarios, fullScenarios, scenarioQuestions, options, responsibilityOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
+import {scenarios, fullScenarios, scenarioQuestions, sevenPtOptions, responsibilityOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
 
 const defaultQuestionStatus = {
     "Skill": false,
@@ -22,11 +22,10 @@ class QuestionsScenario extends React.Component {
     constructor(props) {
         super(props)
         const shuffle = require('shuffle-array');
-        const scenarioOrder = shuffle(scenarios);
         this.state = {
-            scenarioOrder: scenarioOrder,
-            scenario: scenarioOrder[0],
-            scenarioText: fullScenarios[this.props.agent][scenarioOrder[0]],
+            scenarioOrder: this.props.scenario,
+            scenario: this.props.scenario[0],
+            scenarioText: fullScenarios[this.props.agent][this.props.scenario[0]],
             questions: {
                         "agent": shuffle(agentQTypes),
                         "action": shuffle(actionQTypes),
@@ -164,8 +163,7 @@ class QuestionsScenario extends React.Component {
                                 <div>
                                     {responsibilityOptions.map((option, opIdx) => (
                                         <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
-                                        <input key={opIdx} type="radio" name={this.state.scenario +
-                                            qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
+                                        <input key={opIdx} type="radio" name={this.state.scenario + qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
                                         <label style={{"display": "block"}}>
                                             {option}
                                         </label>
@@ -242,10 +240,9 @@ class QuestionsScenario extends React.Component {
                                     {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
                                 </div>
                                 <div>
-                                    {options.map((option, opIdx) => (
+                                    {sevenPtOptions.map((option, opIdx) => (
                                         <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
-                                            <input key={opIdx} type="radio" name={this.state.scenario +
-                                                qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
+                                            <input key={opIdx} type="radio" name={this.state.scenario + qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
                                             <label style={{"display": "block"}}>
                                                 {option}
                                             </label>
