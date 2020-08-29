@@ -32,7 +32,7 @@ class QuestionsScenario extends React.Component {
                         "action": shuffle(actionQTypes),
                         "responsibility": shuffle(responsibilityQTypes)
                     },
-            stages: ["scenario"].concat(shuffle(["agent", "action"])).concat(["responsibility"]),
+            stages: ["scenario"].concat(shuffle(["agent", "action"])).concat(["responsibility", "attention"]),
             curr_stage_id: 0,
             curr_scenario_id: 0,
             missing: defaultQuestionStatus,
@@ -57,12 +57,19 @@ class QuestionsScenario extends React.Component {
 
     skipStage()
     {
-        if (true) { //(this.state.curr_stage_id == 3) {
-            if (true) {//(Object.keys(this.state.responses).length === 13) {
+        if (this.state.curr_stage_id === 3) {
+            if (Object.keys(this.state.responses).length === 13) {
                 this.props.saveDictToState({"scenarioId": this.state.scenario});
                 this.props.saveDictToState(this.state.responses);
                 this.setState({curr_stage_id: 0});
-                this.skipScenario();
+                this.props.saveTime("Scenario N." + this.state.curr_scenario_id + "_end");
+                if (this.state.curr_scenario_id === 1) {
+                    this.setState({responses: {}});
+                    this.setState({curr_stage_id: this.state.curr_stage_id + 1});
+                }
+                else {
+                    this.skipScenario();
+                }
             } else {
                 let questionlist = {...defaultQuestionStatus};
                 var x;
@@ -74,8 +81,14 @@ class QuestionsScenario extends React.Component {
                 this.setState({missing: questionlist});
                 alert("You must answer all questions.");
             }
+        } else if (this.state.curr_stage_id === 4) {
+            this.props.saveDictToState({"scenarioId": "Attention Check"});
+            this.props.saveDictToState(this.state.responses);
+            this.setState({curr_stage_id: 0});
+            this.props.saveTime("Scenario_Attention Check_end");
+            this.skipScenario();
         } else {
-            if (true) {//((Object.keys(this.state.responses).length === 5 * this.state.curr_stage_id) && (Object.keys(this.state.responses).length > 0)) {
+            if ((Object.keys(this.state.responses).length === 5 * this.state.curr_stage_id) && (Object.keys(this.state.responses).length > 0)) {
                 this.setState({curr_stage_id: this.state.curr_stage_id + 1});
                 this.props.saveTime("Scenario N. " + this.state.curr_scenario_id + "_" + this.state.curr_stage_id + "_end");
             } else {
@@ -104,7 +117,6 @@ class QuestionsScenario extends React.Component {
             this.setState({scenarioText: new_scenarioText});
             this.setState({responses: {}});
             this.setState({missing: defaultQuestionStatus});
-            this.props.saveTime("Scenario N." + this.state.curr_scenario_id + "_end");
         }
     }
 
@@ -167,6 +179,50 @@ class QuestionsScenario extends React.Component {
                         <Button variant="secondary" onClick={this.skipStage}>Next</Button>
                     </div>
                 </div>
+        } else if (stage === "attention") {
+            content =
+                <div className="Scenario">
+                    <div className="Subtitle Spotlight">
+                        Read the prompt below carefully.
+                    </div>
+                        <main style={{"paddingTop": "5px"}}>
+                            Artificial intelligence (AI), sometimes called machine intelligence, is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals. Leading AI textbooks define the field as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals. If you have been paying attention, please select "Adobe Illustrator" for "A.I" below. Colloquially, the term "artificial intelligence" is often used to describe machines (or computers) that mimic "cognitive" functions that humans associate with the human mind, such as "learning" and "problem solving".
+                        </main>
+                    <hr/>
+                    <div className="Spotlight Question">
+                        Answer the following question based on the text.
+                    </div>
+                    <div style={{"margin": "5px"}}>
+                        <div className="QuestionMargin">
+                            <div className="Question">
+                                What does A.I. stand for?
+                            </div>
+                            <div>
+                                <div style={{"display": "inline-block", "margin": "10px"}}>
+                                    <input type="radio" name="attention" value="Artificial Intelligence" onClick={() => this.saveResponseToState("attention", "Artificial Intelligence")}/>
+                                    <label style={{"display": "block"}}>
+                                        Artificial Intelligence
+                                    </label>
+                                </div>
+                                <div style={{"display": "inline-block", "margin": "10px"}}>
+                                    <input type="radio" name="attention" value="Adobe Illustrator" onClick={() => this.saveResponseToState("attention", "Adobe Illustrator")}/>
+                                    <label style={{"display": "block"}}>
+                                        Adobe Illustrator
+                                    </label>
+                                </div>
+                                <div style={{"display": "inline-block", "margin": "10px"}}>
+                                    <input type="radio" name="attention" value="other" onClick={() => this.saveResponseToState("attention", "other")}/>
+                                    <label style={{"display": "block"}}>
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <Button variant="secondary" onClick={this.skipStage}>Next</Button>
+                    </div>
+                </div>
         } else {
             questions = scenarioQuestions[stage][this.props.agent][this.state.scenario];
             content =
@@ -188,12 +244,12 @@ class QuestionsScenario extends React.Component {
                                 <div>
                                     {options.map((option, opIdx) => (
                                         <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
-                                        <input key={opIdx} type="radio" name={this.state.scenario +
-                                            qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
-                                        <label style={{"display": "block"}}>
-                                            {option}
-                                        </label>
-                                    </div>
+                                            <input key={opIdx} type="radio" name={this.state.scenario +
+                                                qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
+                                            <label style={{"display": "block"}}>
+                                                {option}
+                                            </label>
+                                        </div>
                                     ))}
                                 </div>
                             </div>
