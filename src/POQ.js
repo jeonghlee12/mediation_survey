@@ -21,9 +21,7 @@ const defaultQuestionStatus = {
 class POQ extends React.Component {
     constructor(props) {
         super(props);
-        const shuffle = require('shuffle-array');
         this.state = {
-            qTypeOrder: shuffle(["retributive", "utilitarian"]),
             missing: defaultQuestionStatus,
             responses: {},
         }
@@ -41,18 +39,17 @@ class POQ extends React.Component {
         if (Object.keys(this.state.responses).length < 13) {
             let questionlist = {...defaultQuestionStatus};
 
-            for (const qGenre of this.state.qTypeOrder) {
-                for (const question of POQQuestions[qGenre]) {
-                    if (!(question.id in this.state.responses)) {
-                        questionlist[question.id] = true;
-                    }
+            for (const question of POQQuestions) {
+                if (!(question.id in this.state.responses)) {
+                    questionlist[question.id] = true;
                 }
             }
+
 
             this.setState({missing: questionlist});
             alert("You must answer all questions.");
         } else {
-            this.props.saveDictToState(this.state.responses);
+            this.props.saveDictToState({"POQ": this.state.responses});
             this.props.skipStage();
         }
     }
@@ -65,25 +62,21 @@ class POQ extends React.Component {
                     <hr/>
                 </div>
                 <div style={{"margin": "5px"}}>
-                    {this.state.qTypeOrder.map((qType) => (
-                        <div key={qType}>
-                            {POQQuestions[qType].map((q) => (
-                                <div key={qType + q.id} className="QuestionMargin">
-                                    <div className="Question" key={q.id}>
-                                        {q.question}<span className={"Reminder " + (this.state.missing[q.id] ? `${q.id}Reminder` : "")}>*</span>
-                                    </div>
-                                    <div>
-                                        {sevenPtOptions.map((option, opIdx) => (
-                                            <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
-                                            <input key={opIdx} type="radio" name={q.id} value={option} onClick={() => this.saveResponseToState(q.id, option)}/>
-                                            <label style={{"display": "block", "textAlign": "center"}}>
-                                                {option}
-                                            </label>
-                                        </div>
-                                        ))}
-                                    </div>
+                    {POQQuestions.map((q) => (
+                        <div key={q.id} className="QuestionMargin">
+                            <div className="Question" key={q.id}>
+                                {q.question}<span className={"Reminder " + (this.state.missing[q.id] ? `${q.id}Reminder` : "")}>*</span>
+                            </div>
+                            <div>
+                                {sevenPtOptions.map((option, opIdx) => (
+                                    <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
+                                    <input key={opIdx} type="radio" name={q.id} value={option} onClick={() => this.saveResponseToState(q.id, option)}/>
+                                    <label style={{"display": "block", "textAlign": "center"}}>
+                                        {option}
+                                    </label>
                                 </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     ))}
                 </div>

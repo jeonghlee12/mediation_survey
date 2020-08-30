@@ -52,7 +52,7 @@ class Demographics extends React.Component {
             this.setState({missing: questionlist});
             alert("You must answer all questions.");
         } else {
-            this.props.saveDictToState(this.state.responses);
+            this.props.saveDictToState({"Demographics": this.state.responses});
             this.props.skipStage();
         }
     }
