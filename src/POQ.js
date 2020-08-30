@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { POQQuestions, fivePtOptions } from './Data.js';
+import { POQQuestions, fivePtOptions, sevenPtOptions } from './Data.js';
 
 const defaultQuestionStatus = {
     "R1": false,
@@ -20,9 +20,10 @@ const defaultQuestionStatus = {
 
 class POQ extends React.Component {
     constructor(props) {
-        super(props)
+        super(props);
+        const shuffle = require('shuffle-array');
         this.state = {
-            qTypeOrder: ["retributive", "utilitarian"],
+            qTypeOrder: shuffle(["retributive", "utilitarian"]),
             missing: defaultQuestionStatus,
             responses: {},
         }
@@ -59,7 +60,10 @@ class POQ extends React.Component {
     render () {
         let content =
             <div className="ControlQuestions">
-                <main>Before the survey, please answer the questions below regarding your views on the functions of punishment.<br/><hr/></main>
+                <div className="Subtitle">
+                    Please answer the following questions regarding your views on punishment.<br/>
+                    <hr/>
+                </div>
                 <div style={{"margin": "5px"}}>
                     {this.state.qTypeOrder.map((qType) => (
                         <div key={qType}>
@@ -69,10 +73,10 @@ class POQ extends React.Component {
                                         {q.question}<span className={"Reminder " + (this.state.missing[q.id] ? `${q.id}Reminder` : "")}>*</span>
                                     </div>
                                     <div>
-                                        {fivePtOptions.map((option, opIdx) => (
-                                            <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
+                                        {sevenPtOptions.map((option, opIdx) => (
+                                            <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
                                             <input key={opIdx} type="radio" name={q.id} value={option} onClick={() => this.saveResponseToState(q.id, option)}/>
-                                            <label style={{"display": "block"}}>
+                                            <label style={{"display": "block", "textAlign": "center"}}>
                                                 {option}
                                             </label>
                                         </div>
@@ -84,6 +88,7 @@ class POQ extends React.Component {
                     ))}
                 </div>
                 <div>
+                    <hr/>
                     <div>
                         <Button variant="secondary" onClick={this.skipStage}>Next</Button>
                     </div>

@@ -22,11 +22,16 @@ class Scenarios extends React.Component {
         var stage = this.state.stages[this.state.curr_stage_id];
         let content;
         if (stage === "intro") {
-            content = <div className='VerticalCenter'>
-                        <main>
-                            {introParagraph[this.props.agent]}
+            content = <div className='Subtitle'>
+                            {introParagraph[this.props.agent][0]}
+                            <br/>
+                            {introParagraph[this.props.agent][1]}
+                            <br/>
+                            <div className="RedSpotlight">
+                            {introParagraph[this.props.agent][2]}
+                            </div>
+
                             <hr/>
-                        </main>
                         <div>
                             <Button variant="secondary" onClick={this.skipIntro}>Next</Button>
                         </div>

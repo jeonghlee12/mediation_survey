@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { treatGroups, scenarios, getRandomItem } from './Data.js'
 import Intro from './Intro.js';
@@ -94,7 +93,7 @@ class App extends React.Component {
     }
 
     redirectToSurveyCompletion() {
-        let path = //'https://app.prolific.co/submissions/complete?cc=5D1B9B70';
+        let path = 'https://www.google.com/';
         window.open(path, "_self");
     }
 

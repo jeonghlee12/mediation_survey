@@ -1,6 +1,8 @@
 .App {
-    text-align: center;
-    font-family: 'Arial', sans-serif;
+    /* text-align: center; */
+    font-family: 'Lato', sans-serif;
+    margin: 2% 10% 5%;
+    line-height: 1.6;
 }
 
 .Title {
@@ -14,19 +16,26 @@
 }
 
 main {
-    font-size: 18px;
+    font-size: 20px;
+}
+
+.LikertScale {
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: center;
 }
 
 .VerticalCenter {
-    margin: 0% 15%;
+    /* margin: 0% 15%;
     position: absolute;
     top: 50%;
     -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    transform: translateY(-50%); */
 }
 
 .Scenario {
-    margin: 3% 12%;
+    /* margin: 3% 12%; */
 }
 
 .Question {
@@ -60,9 +69,17 @@ main {
 }
 
 .QuestionMargin {
-  margin: 15px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 .ControlQuestions {
-    margin: 3% 15% 5%;
+  /* margin: 3% 15% 5%; */
+}
+
+input[type="radio"] {
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+  transform: scale(1.5);
+  min-width: 60px;
 }

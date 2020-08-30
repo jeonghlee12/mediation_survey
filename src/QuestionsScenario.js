@@ -135,7 +135,12 @@ class QuestionsScenario extends React.Component {
                     <div className="Subtitle Spotlight">
                         Imagine that you read the following story in your local newspaper:
                     </div>
-                    {introduction_text}
+                    <div className="main">
+                        {introduction_text}
+                    </div>
+                    <div style={{"textAlign": "right", "fontSize": "10pt"}}>
+                        {this.state.curr_scenario_id + 1}/4
+                    </div>
                     <hr/>
                     <div>
                         <Button variant="secondary" onClick={this.skipIntro}>Next</Button>
@@ -146,12 +151,17 @@ class QuestionsScenario extends React.Component {
             content =
                 <div className="Scenario">
                     <div className="Subtitle Spotlight">
-                        Answer the following questions about the scenario below.
+                        Imagine that you read the following story in your local newspaper:
                     </div>
-                    {introduction_text}
+                    <div className="main">
+                        {introduction_text}
+                    </div>
+                    <div style={{"textAlign": "right", "fontSize": "10pt"}}>
+                        {this.state.curr_scenario_id + 1}/4
+                    </div>
                     <hr/>
-                    <div className="Spotlight Question">
-                        Answer the following questions regarding responsibility.
+                    <div className="Spotlight Subtitle">
+                        Regarding the scenario presented above, please answer the following questions.
                     </div>
                     <div style={{"margin": "5px"}}>
                         {questionsOrder.map((qType, qIdx) => (
@@ -161,7 +171,7 @@ class QuestionsScenario extends React.Component {
                                 </div>
                                 <div>
                                     {responsibilityOptions.map((option, opIdx) => (
-                                        <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
+                                        <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
                                         <input key={opIdx} type="radio" name={this.state.scenario + qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
                                         <label style={{"display": "block"}}>
                                             {option}
@@ -172,6 +182,7 @@ class QuestionsScenario extends React.Component {
                             </div>
                         ))}
                     </div>
+                    <hr/>
                     <div>
                         <Button variant="secondary" onClick={this.skipStage}>Next</Button>
                     </div>
@@ -180,42 +191,31 @@ class QuestionsScenario extends React.Component {
             content =
                 <div className="Scenario">
                     <div className="Subtitle Spotlight">
-                        Read the prompt below carefully.
+                        Please read the prompt below carefully.
                     </div>
                         <main style={{"paddingTop": "5px"}}>
-                            Artificial intelligence (AI), sometimes called machine intelligence, is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals. Leading AI textbooks define the field as the study of "intelligent agents": any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals. If you have been paying attention, please select "Adobe Illustrator" for "A.I" below. Colloquially, the term "artificial intelligence" is often used to describe machines (or computers) that mimic "cognitive" functions that humans associate with the human mind, such as "learning" and "problem solving".
+                            Artificial intelligence (AI), sometimes called machine intelligence, is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals. 
+                            Leading AI textbooks define the field as the study of "intelligent agents:" any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals. 
+                            If you have been paying attention, please select "Strongly disagree" below. 
+                            Colloquially, the term "artificial intelligence" is often used to describe machines (or computers) that mimic "cognitive" functions that humans associate with the humans, such as "learning" and "problem solving".
                         </main>
                     <hr/>
                     <div className="Spotlight Question">
-                        Answer the following question based on the text.
+                        To what extent do you agree with the prompt above?
                     </div>
                     <div style={{"margin": "5px"}}>
                         <div className="QuestionMargin">
-                            <div className="Question">
-                                What does A.I. stand for?
-                            </div>
-                            <div>
-                                <div style={{"display": "inline-block", "margin": "10px"}}>
-                                    <input type="radio" name="attention" value="Artificial Intelligence" onClick={() => this.saveResponseToState("attention", "Artificial Intelligence")}/>
-                                    <label style={{"display": "block"}}>
-                                        Artificial Intelligence
-                                    </label>
-                                </div>
-                                <div style={{"display": "inline-block", "margin": "10px"}}>
-                                    <input type="radio" name="attention" value="Adobe Illustrator" onClick={() => this.saveResponseToState("attention", "Adobe Illustrator")}/>
-                                    <label style={{"display": "block"}}>
-                                        Adobe Illustrator
-                                    </label>
-                                </div>
-                                <div style={{"display": "inline-block", "margin": "10px"}}>
-                                    <input type="radio" name="attention" value="other" onClick={() => this.saveResponseToState("attention", "other")}/>
-                                    <label style={{"display": "block"}}>
-                                        Other
-                                    </label>
-                                </div>
-                            </div>
+                            {sevenPtOptions.map((option, opIdx) => (
+                                        <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
+                                            <input key={opIdx} type="radio" name={"attention"} value={option} onClick={() => this.saveResponseToState("attention", option)}/>
+                                            <label style={{"display": "block"}}>
+                                                {option}
+                                            </label>
+                                        </div>
+                                    ))}
                         </div>
                     </div>
+                    <hr/>
                     <div>
                         <Button variant="secondary" onClick={this.skipStage}>Next</Button>
                     </div>
@@ -225,12 +225,17 @@ class QuestionsScenario extends React.Component {
             content =
                 <div className="Scenario">
                     <div className="Subtitle Spotlight">
-                        Answer the following questions about the scenario below.
+                        Imagine that you read the following story in your local newspaper:
                     </div>
-                    {introduction_text}
+                    <div className="main">
+                        {introduction_text}
+                    </div>
+                    <div style={{"textAlign": "right", "fontSize": "10pt"}}>
+                        {this.state.curr_scenario_id + 1}/4
+                    </div>
                     <hr/>
-                    <div className="Spotlight Question">
-                        Answer the following questions regarding the <span className="RedSpotlight Subtitle">{stage}</span>.
+                    <div className="Spotlight Subtitle">
+                        Regarding the scenario presented above, to what extent do you agree with the following statements?
                     </div>
                     <div style={{"margin": "5px"}}>
                         {questionsOrder.map((qType, qIdx) => (
@@ -240,7 +245,7 @@ class QuestionsScenario extends React.Component {
                                 </div>
                                 <div>
                                     {sevenPtOptions.map((option, opIdx) => (
-                                        <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
+                                        <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
                                             <input key={opIdx} type="radio" name={this.state.scenario + qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
                                             <label style={{"display": "block"}}>
                                                 {option}
@@ -251,7 +256,7 @@ class QuestionsScenario extends React.Component {
                             </div>
                         ))}
                     </div>
-
+                    <hr/>                
                     <div>
                         <Button variant="secondary" onClick={this.skipStage}>Next</Button>
                     </div>

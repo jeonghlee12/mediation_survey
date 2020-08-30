@@ -8,6 +8,7 @@ class Intro extends React.Component {
                 <div className='Title'>Introduction</div>
                 <main>
                     In this survey, we will present you with some situations involving robots and humans. We would like to know what you think about the consequences of their actions.
+                    <br/>
                     <strong>We are not looking for the correct answers, but your opinion on the matter.</strong>
                     <p className="Question Spotlight">Please, read all the information provided in this survey carefully.</p>
                     <div>
@@ -22,7 +23,7 @@ class Intro extends React.Component {
                             </span>
                         </div>
                         <br/>
-                        Please contact the research administrator (ibs.dscig@gmail.com ) if you have any questions. Thank you!
+                        Please contact the research administrator (ibs.dscig@gmail.com) if you have any questions. Thank you!
                         <br/>
                         <span className="Question">Clicking <span className="Spotlight">next</span> below indicates that you have understood the information and consent to your participation.</span>
                     </div>

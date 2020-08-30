@@ -79,14 +79,14 @@ class Demographics extends React.Component {
                                     <div key={question + questionIdx + "_"}>
                                         {question.options.map((option, opIdx) => (
                                             (question.order === "horizontal")?
-                                            <div style={{"display": "inline-block", "margin": "10px"}} key={opIdx}>
+                                            <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
                                                 <input key={opIdx} type="radio" name={question.id} value={option} onClick={() => this.saveResponseToState(question.id, option)}/>
                                                 <label style={{"display": "block"}}>
                                                     {option}
                                                 </label>
                                             </div>
                                             :
-                                            <div style={{"margin": "10px"}} key={opIdx}>
+                                            <div className="LikertScale" style={{"textAlign": "left"}} key={opIdx}>
                                                 <input key={opIdx} type="radio" name={question.id} value={option} onClick={() => this.saveResponseToState(question.id, option)}/>
                                                 <label style={{"marginLeft": "5px", "marginTop": "0px", "marginBottom": "0px"}}>
                                                     {option}
