@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import {scenarios, fullScenarios, scenarioQuestions, sevenPtOptions, responsibilityOptions, blameOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
+import {fullScenarios, scenarioQuestions, sevenPtOptions, responsibilityOptions, blameOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
 
 const cars = false;
 
@@ -74,8 +74,7 @@ class QuestionsScenario extends React.Component {
                 }
             } else {
                 let questionlist = {...defaultQuestionStatus};
-                var x;
-                for (x of this.state.questions[this.state.stages[this.state.curr_stage_id]]) {
+                for (const x of this.state.questions[this.state.stages[this.state.curr_stage_id]]) {
                     if (!(x in this.state.responses)) {
                         questionlist[x] = true;
                     }
@@ -94,8 +93,7 @@ class QuestionsScenario extends React.Component {
                 this.props.saveTime("Scenario" + this.state.curr_scenario_id + "_" + this.state.curr_stage_id + "_end");
             } else {
                 let questionlist = {...defaultQuestionStatus};
-                var x;
-                for (x of this.state.questions[this.state.stages[this.state.curr_stage_id]]) {
+                for (const x of this.state.questions[this.state.stages[this.state.curr_stage_id]]) {
                     if (!(x in this.state.responses)) {
                         questionlist[x] = true;
                     }
@@ -154,7 +152,6 @@ class QuestionsScenario extends React.Component {
                     </div>
                 </div>
         } else if (stage === "responsibility") {
-            let options;
             questions = scenarioQuestions[stage][this.props.agent][this.state.scenario];
             content =
                 <div className="Scenario">

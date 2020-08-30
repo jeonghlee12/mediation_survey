@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import { POQQuestions, fivePtOptions, sevenPtOptions } from './Data.js';
+import { POQQuestions, sevenPtOptions } from './Data.js';
 
 const defaultQuestionStatus = {
     "R1": false,
