@@ -22,10 +22,12 @@ class QuestionsScenario extends React.Component {
     constructor(props) {
         super(props)
         const shuffle = require('shuffle-array');
+        const cars = false;
         this.state = {
+            onlyCars: cars,
             scenarioOrder: this.props.scenario,
-            scenario: this.props.scenario[0],
-            scenarioText: fullScenarios[this.props.agent][this.props.scenario[0]],
+            scenario: (cars)? ["Car"] : this.props.scenario[0],
+            scenarioText: fullScenarios[this.props.agent][(cars)? ["Car"] : this.props.scenario[0]],
             questions: {
                         "agent": shuffle(agentQTypes),
                         "action": shuffle(actionQTypes),
@@ -62,7 +64,7 @@ class QuestionsScenario extends React.Component {
                 this.props.saveDictToState({[scenario]: this.state.responses});
                 this.setState({curr_stage_id: 0});
                 this.props.saveTime("Scenario" + this.state.curr_scenario_id + "_end");
-                if (this.state.curr_scenario_id === 1) {
+                if (this.state.onlyCars || (this.state.curr_scenario_id === 1)) {
                     this.setState({responses: {}});
                     this.setState({curr_stage_id: this.state.curr_stage_id + 1});
                 }
@@ -104,17 +106,21 @@ class QuestionsScenario extends React.Component {
     }
 
     skipScenario() {
-        if (this.state.curr_scenario_id === 3) {
+        if (this.state.onlyCars) {
             this.props.skipStage();
         } else {
-            let scenario_id = this.state.curr_scenario_id + 1;
-            let new_scenario = this.state.scenarioOrder[scenario_id];
-            let new_scenarioText = fullScenarios[this.props.agent][new_scenario]
-            this.setState({curr_scenario_id: scenario_id});
-            this.setState({scenario: new_scenario});
-            this.setState({scenarioText: new_scenarioText});
-            this.setState({responses: {}});
-            this.setState({missing: defaultQuestionStatus});
+            if (this.state.curr_scenario_id === 3) {
+                this.props.skipStage();
+            } else {
+                let scenario_id = this.state.curr_scenario_id + 1;
+                let new_scenario = this.state.scenarioOrder[scenario_id];
+                let new_scenarioText = fullScenarios[this.props.agent][new_scenario]
+                this.setState({curr_scenario_id: scenario_id});
+                this.setState({scenario: new_scenario});
+                this.setState({scenarioText: new_scenarioText});
+                this.setState({responses: {}});
+                this.setState({missing: defaultQuestionStatus});
+            }
         }
     }
 
