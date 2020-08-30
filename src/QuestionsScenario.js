@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import {scenarios, fullScenarios, scenarioQuestions, sevenPtOptions, responsibilityOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
+import {scenarios, fullScenarios, scenarioQuestions, sevenPtOptions, responsibilityOptions, blameOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
 
 const defaultQuestionStatus = {
     "Skill": false,
@@ -147,6 +147,7 @@ class QuestionsScenario extends React.Component {
                     </div>
                 </div>
         } else if (stage === "responsibility") {
+            let options;
             questions = scenarioQuestions[stage][this.props.agent][this.state.scenario];
             content =
                 <div className="Scenario">
@@ -165,6 +166,23 @@ class QuestionsScenario extends React.Component {
                     </div>
                     <div style={{"margin": "5px"}}>
                         {questionsOrder.map((qType, qIdx) => (
+                            (qType === "Blame") ?
+                            <div key={this.state.scenario + stage + qIdx} className="QuestionMargin">
+                                <div className="Question" key={qIdx}>
+                                    {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
+                                </div>
+                                <div>
+                                    {blameOptions.map((option, opIdx) => (
+                                        <div className="LikertScale" style={{"display": "inline-block"}} key={opIdx}>
+                                        <input key={opIdx} type="radio" name={this.state.scenario + qType} value={option} onClick={() => this.saveResponseToState(qType, option)}/>
+                                        <label style={{"display": "block"}}>
+                                            {option}
+                                        </label>
+                                    </div>
+                                    ))}
+                                </div>
+                            </div>
+                            :
                             <div key={this.state.scenario + stage + qIdx} className="QuestionMargin">
                                 <div className="Question" key={qIdx}>
                                     {questions[qType]}<span className={"Reminder " + (this.state.missing[qType] ? `${qType}Reminder` : "")}>*</span>
@@ -194,9 +212,9 @@ class QuestionsScenario extends React.Component {
                         Please read the prompt below carefully.
                     </div>
                         <main style={{"paddingTop": "5px"}}>
-                            Artificial intelligence (AI), sometimes called machine intelligence, is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals. 
-                            Leading AI textbooks define the field as the study of "intelligent agents:" any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals. 
-                            If you have been paying attention, please select "Strongly disagree" below. 
+                            Artificial intelligence (AI), sometimes called machine intelligence, is intelligence demonstrated by machines, unlike the natural intelligence displayed by humans and animals.
+                            Leading AI textbooks define the field as the study of "intelligent agents:" any device that perceives its environment and takes actions that maximize its chance of successfully achieving its goals.
+                            If you have been paying attention, please select "Strongly disagree" below.
                             Colloquially, the term "artificial intelligence" is often used to describe machines (or computers) that mimic "cognitive" functions that humans associate with the humans, such as "learning" and "problem solving".
                         </main>
                     <hr/>
@@ -256,7 +274,7 @@ class QuestionsScenario extends React.Component {
                             </div>
                         ))}
                     </div>
-                    <hr/>                
+                    <hr/>
                     <div>
                         <Button variant="secondary" onClick={this.skipStage}>Next</Button>
                     </div>

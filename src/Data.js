@@ -20,6 +20,8 @@ export const sevenPtOptions = ["Strongly disagree", "Disagree", "Somewhat disagr
 
 export const responsibilityOptions = ["Not at all responsible", "Somewhat responsible", "Mostly responsible", "Completely responsible"];
 
+export const blameOptions = ["Not at all", "Somewhat", "Mostly", "Completely"];
+
 export const POQQuestions = {
     "retributive": shuffle([
         {id: "R1", question: "Punishment is necessary because it restores the balance of justice."},
@@ -42,13 +44,13 @@ export const POQQuestions = {
 }
 
 export const introParagraph = {
-    "robotAI": 
+    "robotAI":
     ["In this survey, we will present to you some scenarios where a certain robot or artificial intelligence (AI) system has caused some damage.",
      "We would like to know what you think about them and the consequences of their actions. We are not looking for the correct answers, but your opinion on the matter.",
      "Please, answer all questions presented to you taking into consideration the robot/AI itself."],
-    "human": 
+    "human":
     ["In this survey, we will present to you some scenarios where some person has caused some damage.",
-    "We would like to know what you think about him/her and the consequences of his/her actions. We are not looking for the correct answers, but your opinion on the matter.", 
+    "We would like to know what you think about him/her and the consequences of his/her actions. We are not looking for the correct answers, but your opinion on the matter.",
     "Please, answer all questions presented to you taking into consideration the person himself/herself."]
 }
 
