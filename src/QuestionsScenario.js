@@ -2,6 +2,8 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import {scenarios, fullScenarios, scenarioQuestions, sevenPtOptions, responsibilityOptions, blameOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
 
+const cars = false;
+
 const defaultQuestionStatus = {
     "Skill": false,
     "Belief": false,
@@ -22,7 +24,6 @@ class QuestionsScenario extends React.Component {
     constructor(props) {
         super(props)
         const shuffle = require('shuffle-array');
-        const cars = false;
         this.state = {
             onlyCars: cars,
             scenarioOrder: this.props.scenario,
