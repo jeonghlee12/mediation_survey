@@ -19,10 +19,8 @@ class App extends React.Component {
         const params = queryString.parse(this.props.location.search);
         this.state = {
             time: {"init": new Date()},
-            // assignmentId: params.assignmentId,
-            // hitId: params.hitId,
-            // turkSubmitTo: params.turkSubmitTo,
-            // workerId: params.workerId,
+            studyId: params.STUDY_ID,
+            sessionId: params.SESSION_ID,
             prolificId: params.PROLIFIC_PID,
             scenario: shuffle(scenarios),
             agent: randomTreat.agent,
@@ -45,6 +43,8 @@ class App extends React.Component {
         allResponses.scenario = this.state.scenario;
         allResponses.agent = this.state.agent;
         allResponses.prolificId = this.state.prolificId;
+        allResponses.studyId = this.state.studyId;
+        allResponses.sessionId = this.state.sessionId;
         const times = this.state.time;
         for (var keyTime in times) {
             allResponses[keyTime] = times[keyTime];
