@@ -23,11 +23,11 @@ class App extends React.Component {
             // hitId: params.hitId,
             // turkSubmitTo: params.turkSubmitTo,
             // workerId: params.workerId,
-            // prolificId: params.PROLIFIC_PID,
+            prolificId: params.PROLIFIC_PID,
             scenario: shuffle(scenarios),
             agent: randomTreat.agent,
             stages: ["intro", "POQ", "scenario", "demographics", "end"],
-            curr_stage_id: 0,
+            curr_stage_id: 2,
             responses: {}
         }
         this.saveDictToState = this.saveDictToState.bind(this);
@@ -44,7 +44,7 @@ class App extends React.Component {
         var allResponses = this.state.responses;
         allResponses.scenario = this.state.scenario;
         allResponses.agent = this.state.agent;
-        //allResponses.prolificId = this.state.prolificId;
+        allResponses.prolificId = this.state.prolificId;
         const times = this.state.time;
         for (var keyTime in times) {
             allResponses[keyTime] = times[keyTime];

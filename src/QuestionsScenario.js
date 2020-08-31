@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import {fullScenarios, scenarioQuestions, sevenPtOptions, responsibilityOptions, blameOptions, agentQTypes, actionQTypes, responsibilityQTypes } from './Data.js';
 
-const cars = false;
+const cars = true;
 
 const defaultQuestionStatus = {
     "Skill": false,

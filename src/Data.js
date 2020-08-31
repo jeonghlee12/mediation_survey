@@ -18,9 +18,9 @@ export const fivePtOptions = ["Strongly disagree", "Disagree", "Neither agree no
 
 export const sevenPtOptions = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
 
-export const responsibilityOptions = ["Not at all responsible", "Somewhat responsible", "Mostly responsible", "Completely responsible"];
+export const responsibilityOptions = ["Not at all", "A little", "Moderately", "Very much"];
 
-export const blameOptions = ["Not at all", "Somewhat", "Mostly", "Completely"];
+export const blameOptions = ["Not at all", "A little", "Moderately", "Very much"];
 
 export const POQQuestions = shuffle([
     {id: "R1", question: "Punishment is necessary because it restores the balance of justice."},
@@ -62,13 +62,13 @@ export const fullScenarios = {
     },
 
     "human": {
-        "Car": "An car driver moved to the right far lane to make a right turn, but stopped after detecting some sandbags blocking its path. The driver waited for a few vehicles to pass by and crashed into the side of a regular bus when reentering the center lane, hurting some passengers.",
+        "Car": "An car driver moved to the right far lane to make a right turn, but stopped after detecting some sandbags blocking his path. The driver waited for a few vehicles to pass by and crashed into the side of a regular bus when reentering the center lane, hurting some passengers.",
 
         "War": "During a period of war, a captain of a submarine identified a hospital ship, which is protected under the Hague convention from any attack, as an enemy destroyer and sent a torpedo. The captain decided to also shoot down the ship’s lifeboats, leaving only four survivors out of the 200 personnel.",
 
         "Medicine": "An adult woman with severe migraine was seen by a doctor, who prescribed medicine which stopped some symptoms but did not relieve her pain. A few hours later, the woman returned to the doctor. The doctor then prescribed an injection with the wrong dosage. The patient went to suffer permanent brain damage.",
 
-        "Bias": "At a company called Oscorp, there is a supervisor that oversees the company’s yearly recruitment. A few years after its implementation, an internal audit revealed that the supervisor penalized resumes with keywords regarding the applicant’s gender, such as ‘women.’ The audit further found, as a result, potential women candidates received a disadvantage during the selection process and were not hired."
+        "Bias": "At a company called Oscorp, there is a supervisor that oversees the company’s yearly recruitment. A few years after his hiring, an internal audit revealed that the supervisor penalized resumes with keywords regarding the applicant’s gender, such as ‘women.’ The audit further found, as a result, potential women candidates received a disadvantage during the selection process and were not hired."
     }
 }
 
