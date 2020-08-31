@@ -1,6 +1,6 @@
 {
   "homepage": "https://thegcamilo.github.io/pg-mediation",
-  "name": "blank",
+  "name": "pg-mediation",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
