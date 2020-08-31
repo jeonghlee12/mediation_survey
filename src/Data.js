@@ -18,9 +18,9 @@ export const fivePtOptions = ["Strongly disagree", "Disagree", "Neither agree no
 
 export const sevenPtOptions = ["Strongly disagree", "Disagree", "Somewhat disagree", "Neither agree nor disagree", "Somewhat agree", "Agree", "Strongly agree"];
 
-export const responsibilityOptions = ["Not at all", "A little", "Moderately", "Very much"];
+export const responsibilityOptions = ["Not at all responsible", "Somewhat responsible", "Mostly responsible", "Completely responsible"];
 
-export const blameOptions = ["Not at all", "A little", "Moderately", "Very much"];
+export const blameOptions = ["Not at all", "Somewhat", "Mostly", "Completely"];
 
 export const POQQuestions = shuffle([
     {id: "R1", question: "Punishment is necessary because it restores the balance of justice."},
