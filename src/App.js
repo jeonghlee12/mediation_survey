@@ -27,7 +27,7 @@ class App extends React.Component {
             scenario: shuffle(scenarios),
             agent: randomTreat.agent,
             stages: ["intro", "POQ", "scenario", "demographics", "end"],
-            curr_stage_id: 2,
+            curr_stage_id: 0,
             responses: {}
         }
         this.saveDictToState = this.saveDictToState.bind(this);
